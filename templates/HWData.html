@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="static/styles/myStyle.css">
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+	<script src="https://code.highcharts.com/highcharts-more.js"></script>
+	<script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
+	<script src="https://code.highcharts.com/modules/exporting.js"></script>
+	<script src="https://code.highcharts.com/modules/export-data.js"></script>
+	<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<!-- <script type="text/javascript" src="static/js/testScripts.js?ver<%=DateTime.Now.Ticks.ToString()%>"></script> -->
+	<!-- <script type="text/javascript" src="static/js/chartScripts.js"></script>	 -->
+	<script type="text/javascript" src="static/js/smuScripts.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.2/bootstrap-slider.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.2/css/bootstrap-slider.min.css">
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="widget-initialisation">
+				<h3>Hot Wire Data</h3>
+				<!-- SMU Readings -->
+				<div>
+					<label for="measuredTemperature">Temperature</label>
+					<input id="measuredTemperature" type="number" class="form-control smu-measurement" disabled>
+				</div>
+				<div>
+					<label for="measuredCurrent">Current</label>
+					<input id="measuredCurrent" type="number" class="form-control smu-measurement" disabled>
+				</div>
+				
+				<div>
+					<label for="measuredVoltage">Voltage</label>
+					<input id="measuredVoltage" type="number" class="form-control smu-measurement" disabled>
+				</div>
+
+				<div>
+					<label for="measuredResistance">Resistance</label>
+					<input id="measuredResistance" type="number" class="form-control smu-measurement" disabled>
+				</div>
+				<br>
+			</div>
+		</div>
+	</div>
+
+
+</body>
+</html>

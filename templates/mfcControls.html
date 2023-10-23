@@ -1,0 +1,243 @@
+  <!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="static/styles/myStyle.css">
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+	<script src="https://code.highcharts.com/highcharts-more.js"></script>
+	<script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
+	<script src="https://code.highcharts.com/modules/exporting.js"></script>
+	<script src="https://code.highcharts.com/modules/export-data.js"></script>
+	<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="static/js/testScripts.js?ver<%=DateTime.Now.Ticks.ToString()%>"></script>
+	<script type="text/javascript" src="static/js/chartScripts.js"></script>
+</head>
+<body>
+
+	<div class="container fluid">
+		<div class="row">	
+			<!-- MFC 1 -->			
+			<div>
+				<div class="card widget-large" style="text-align: center;">
+					<div class="card-header">
+					<h2 style="text-align: left;">MFC1</h2>
+					<span><h3 style="text-align: right;" id="mfcGasType_1">updating</h3></span>
+					</div>
+					<div class="card-body">				
+						<div class="chart-container" style="height: 275px;">
+							<div id="container-flowRateGauge_1"></div>
+						</div>				
+					<h3 id="mfcSetPoint_1">updating</h2>
+					<h5>Set Point</h5>
+					<div class="input-group">
+					<input id="changeFlow_1" class="form-control" type="number" onchange="changeFlowRate(1)" width="250px">
+					<div class="input-group-but">
+						<div class="btn-group">
+							<button id="setFlowRate_1" type="button" class="btn btn-primary">Set</button>
+							<button id="decreaceFlowRate_1" type="button" class="btn btn-primary">-</button>
+							<button id="increaseFlowRate_1" type="button" class="btn btn-primary">+</button>
+						</div>
+					</div>
+					</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- MFC 2 -->
+			<div>
+				<div class="card widget-large" style="text-align: center;">
+					<div class="card-header">
+					<h2 style="text-align: left;">MFC2</h2>
+					<span><h3 style="text-align: right;" id="mfcGasType_3">updating</h3></span>
+					</div>
+					<div class="card-body">				
+						<div class="chart-container">
+							<div id="container-flowRateGauge_2"></div>
+						</div>				
+						<h3 id="mfcSetPoint_2">updating</h2>
+						<h5>Set Point</h5>
+					<div class="input-group">
+					<input id="changeFlow_2" class="form-control" type="number" onchange="changeFlowRate(1)" width="250px">
+					<div class="input-group-but">
+						<div class="btn-group">
+							<button id="setFlowRate_2" type="button" class="btn btn-primary">Set</button>
+							<button id="decreaceFlowRate_2" type="button" class="btn btn-primary">-</button>
+							<button id="increaseFlowRate_2" type="button" class="btn btn-primary">+</button>
+						</div>
+					</div>
+					</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- MFC 3 -->
+			<div>
+				<div class="card widget-large" style="text-align: center;">
+					<div class="card-header">
+					<h2 style="text-align: left;">MFC3</h2>
+					<span><h3 style="text-align: right;" id="mfcGasType_3">updating</h3></span>
+					</div>
+					<div class="card-body">				
+						<div class="chart-container">
+							<div id="container-flowRateGauge_3"></div>
+						</div>				
+						<h3 id="mfcSetPoint_3">updating</h2>
+						<h5>Set Point</h5>
+					<div class="input-group">
+					<input id="changeFlow_3" class="form-control" type="number" onchange="changeFlowRate(1)" width="250px">
+					<div class="input-group-but">
+						<div class="btn-group">
+							<button id="setFlowRate_3" type="button" class="btn btn-primary">Set</button>
+							<button id="decreaceFlowRate_3" type="button" class="btn btn-primary">-</button>
+							<button id="increaseFlowRate_3" type="button" class="btn btn-primary">+</button>
+						</div>
+					</div>
+					</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- MFM 4 -->
+			<div>
+				<div class="card widget-large" style="text-align: center;">
+					<div class="card-header">
+					<h2 style="text-align: left;">Outlet</h2>
+					<span><h3 style="text-align: right;" id="mfcGasType_4">updating</h3></span>
+					</div>
+					<div class="card-body">				
+						<div class="chart-container">
+							<div id="container-flowRateGauge_4"></div>
+						</div>				
+						<h3 id="mfcSetPoint_4">updating</h2>
+						<h5>Set Point</h5>
+					<div class="input-group">
+					<input id="changeFlow_4" class="form-control" type="number" onchange="changeFlowRate(1)" width="250px">
+					<div class="input-group-but">
+						<div class="btn-group">
+							<button id="setFlowRate_4" type="button" class="btn btn-primary">Set</button>
+							<button id="decreaceFlowRate_4" type="button" class="btn btn-primary">-</button>
+							<button id="increaseFlowRate_4" type="button" class="btn btn-primary">+</button>
+						</div>
+					</div>
+					</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+<!-- 	<div class="container">
+		<div class="row">
+		-- Flow Controler 1 Widget 		
+		<div class="col-lg-3">
+			<div class="widget widget-large">
+				<div class="widget-header" width="100%">
+					<h2 class="pull-left">MFC1</h2>			
+				</div>
+				<div class="widget-content text-center">
+					<div class="chart-container">
+						<div id="container-flowRateGauge_1"></div> 
+					</div>
+					<div style="width: 100%;">
+						<h3 id="mfcGasType_1">updating</h3>
+						<h5>Current Gas</h5>
+					</div>
+					<h3 id="mfcSetPoint_1">updating</h2>
+					<h5>Set Point</h5>
+					<input id="changeFlow_1" class="form-control" type="number" onchange="changeFlowRate(1)" width="250px">
+				</div>
+			</div>
+		</div>
+		<!-- Flow Controler 2 Widget
+		<div class="col-lg-3">
+			<div class="widget widget-large">
+				<div class="widget-header" width="100%">
+					<h2 class="pull-left">MFC1</h2>			
+				</div>
+				<div class="widget-content text-center">
+					<div style="width: 100%;">
+						<h3 id="mfcGasType_2">updating</h3>
+						<h5>Current Gas</h5>
+					</div>
+					<h3 id="mfcSetPoint_2">updating</h2>
+					<h5>Set Point</h5>
+					<input id="changeFlow_2" type="number" onchange="changeFlowRate(2)">
+				</div>
+			</div>
+		</div>
+		<!-- Flow Controler 3 Widge
+		<div class="col-lg-3">
+			<div class="widget widget-large">
+				<div class="widget-header" width="100%">
+					<h2 class="pull-left">MFC1</h2>			
+				</div>
+				<div class="widget-content text-center">
+						<div style="width: 100%;">
+						<h3 id="mfcGasType_3">updating</h3>
+						<h5>Current Gas</h5>
+					</div>
+					<h3 id="mfcSetPoint_3">updating</h2>
+					<h5>Set Point: </h5>
+					<input id="changeFlow_3" type="number" onchange="changeFlowRate(3)">
+				</div>
+			</div>
+		</div>
+
+		<!-- Flow Meter Widget 
+		<div class="col-lg-3">
+			<div class="widget widget-large">
+				<div class="widget-header" width="100%">
+					<h2 class="pull-left">Output</h2>			
+				</div>
+				<div class="widget-content text-center">
+						<div style="width: 100%;">
+						<h3 id="mfcGasType_4">updating</h3>
+						<h5>Current Gas</h5>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Row
+		</div>
+	</div>
+ -->
+
+</body>
+</html>
+
+
+<!-- <div class="container">
+	<div class="row">
+		<div class="col-md-3">
+			<h2>Set Flow Rate</h2>
+		</div>
+		<div class="col-md-3">
+			<input id="changeFlow" type="number" onchange="changeFlowRate()">
+		</div>
+		<div class="col-md-3">
+			<h2 id="mfcSetPoint">Hello</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-3">
+			<h3>Gas: </h3>
+		</div>
+		<div class="col-md-3">
+			<h3 id="mfcGasType">updating</h3>
+			<button id="getMFCInfo" type="button" class="btn btn-default btn-primary">Get gas</button>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-3">
+			<h3>Flow Rate: </h3>
+		</div>
+		<div class="col-md-3">
+			<h3 id="mfcFlowRate">updating</h3>
+		</div>
+	</div>
+</div> -->

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="static/styles/myStyle.css">
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+	<script src="https://code.highcharts.com/highcharts-more.js"></script>
+	<script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
+	<script src="https://code.highcharts.com/modules/exporting.js"></script>
+	<script src="https://code.highcharts.com/modules/export-data.js"></script>
+	<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<!-- <script type="text/javascript" src="static/js/testScripts.js?ver<%=DateTime.Now.Ticks.ToString()%>"></script> -->
+	<!-- <script type="text/javascript" src="static/js/chartScripts.js"></script>	 -->
+	<script type="text/javascript" src="static/js/smuScripts.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.2/bootstrap-slider.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.2/css/bootstrap-slider.min.css">
+</head>
+<body>
+	<div class="container-float">
+		<div class="col-lg-2 widget-initialisation">
+			<h2>MBL Hydrogen Gas Rig</h2>
+			<h4>Initialisation Parameters</h4>
+			<br>
+			<br>
+			<form>
+				<label for="tcrValue">TCR</label>
+				<input id="tcrValue" type="number" class="form-control">
+				<label for="t0Value">T0</label>
+				<input id="t0Value" type="number" class="form-control">
+				<label for="r0Value">R0</label>
+				<input id="r0Value" type="number" class="form-control">
+				<label for="testName">Test Name</label>
+				<input id="testName" type="text" class="form-control">
+				<label for="userNameInput">User Name</label>
+				<input id="userNameInput" type="text" class="form-control">
+				<button id="setHotwireParams" type="button" class="btn btn-default btn-primary">Set HotWire</button>
+			</form>
+		</div>
+	</div>
+
+
+</body>
+</html>

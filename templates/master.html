@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+		<link rel="stylesheet" href="static/styles/myStyle.css">
+		<script src="https://code.highcharts.com/highcharts.js"></script>
+		<script src="https://code.highcharts.com/highcharts-more.js"></script>
+		<script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
+		<script src="https://code.highcharts.com/modules/exporting.js"></script>
+		<script src="https://code.highcharts.com/modules/export-data.js"></script>
+		<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="static/js/testScripts.js?ver<%=DateTime.Now.Ticks.ToString()%>"></script>
+		<!-- <script type="text/javascript" src="static/js/chartScripts.js"></script> -->
+		<script type="text/javascript" src="static/js/smuScripts.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.2/bootstrap-slider.min.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.2/css/bootstrap-slider.min.css">
+	</head>
+<body>
+	<div class="container-float">
+		<div class="row">
+			<!-- Initialisation -->
+			<div class="col-lg-2 col-sm-12">
+				<div class="widget-initialisation">
+					<h2>MBL Hydrogen Gas Rig</h2>
+					<h4>Initialisation Parameters</h4>
+					<br>
+					<button id="autoButton" class="btn btn-default btn-primary">Auto Mode</button>
+					<button id="autoOffButton" class="btn btn-default btn-danger">Auto Off</button>
+					<button id="mfcShutDown" class="btn btn-default btn-danger">Shutdown MFCs</button>
+					<button id="starWars" class="btn btn-default btn-danger">Tune</button>
+					<span><div class="custom-control custom-switch">
+						<input type="checkbox" class="custom-control-input" id="saveDataON">
+						<label class="custom-control-label" for="saveDataON">Saving when blue</label>
+					</div>
+					</span>
+					<br>
+					<form>
+						<label for="tcrValue">TCR</label>
+						<input id="tcrValue" type="number" class="form-control">
+						<label for="t0Value">T0</label>
+						<input id="t0Value" type="number" class="form-control">
+						<label for="r0Value">R0</label>
+						<input id="r0Value" type="number" class="form-control">
+						<label for="testName">Test Name</label>
+						<input id="testName" type="text" class="form-control">
+						<label for="userNameInput">User Name</label>
+						<input id="userNameInput" type="text" class="form-control">
+						<button id="setHotwireParams" type="button" class="btn btn-default btn-primary">Set Experiment Params</button>
+					</form>
+				</div>
+			</div>
+
+			<!-- MFCs-->
+			<div class="col-lg-10">
+				<div class="row">
+					<!-- MFC 1 -->			
+					<div>
+						<div class="card widget-large" style="text-align: center;">
+							<div class="card-header">
+							<h2 style="text-align: left;">MFC1</h2>
+							<span><h3 style="text-align: right;" id="mfcGasType_1">updating</h3></span>
+							</div>
+							<div class="card-body">				
+								<div class="chart-container" style="height: 250px; overflow:hidden;">
+									<div id="container-flowRateGauge_1"></div>
+								</div>				
+							<h3 id="mfcSetPoint_1">updating</h3>
+							<h5>Set Point</h5>
+							<div class="input-group">
+							<input id="changeFlow_1" class="form-control" type="number" onchange="changeFlowRate(1)" width="250px">
+							<div class="input-group-but">
+								<div class="btn-group">
+									<button id="setFlowRate_1" type="button" class="btn btn-primary">Set</button>
+									<button id="decreaceFlowRate_1" type="button" class="btn btn-primary">-</button>
+									<button id="increaseFlowRate_1" type="button" class="btn btn-primary">+</button>
+								</div>
+							</div>
+							</div>
+							<br>
+							<div class="input-group">
+								<select class="form-control" id="choseGas1">
+									<option value="H2">Hydrogen</option>
+									<option value="N2">Nitrogen</option>
+									<option value="Air">Air</option>
+									<option value="O2">Oxigen</option>
+									<option value="CO2">Carbon Dioxide</option>
+								</select>
+								<button id="setGas1" class="btn btn-default btn-primary">Set Gas</button>
+							</div>
+							</div>
+						</div>
+					</div>
+		
+					<!-- MFC 2 -->
+					<div>
+						<div class="card widget-large" style="text-align: center;">
+							<div class="card-header">
+							<h2 style="text-align: left;">MFC2</h2>
+							<span><h3 style="text-align: right;" id="mfcGasType_2">updating</h3></span>
+							</div>
+							<div class="card-body">				
+								<div class="chart-container" style="height: 250px; overflow:hidden;">
+									<div id="container-flowRateGauge_2"></div>
+								</div>				
+								<h3 id="mfcSetPoint_2">updating</h3>
+								<h5>Set Point</h5>
+							<div class="input-group">
+							<input id="changeFlow_2" class="form-control" type="number" onchange="changeFlowRate(1)" width="250px">
+							<div class="input-group-but">
+								<div class="btn-group">
+									<button id="setFlowRate_2" type="button" class="btn btn-primary">Set</button>
+									<button id="decreaceFlowRate_2" type="button" class="btn btn-primary">-</button>
+									<button id="increaseFlowRate_2" type="button" class="btn btn-primary">+</button>
+								</div>
+							</div>
+							</div>
+							<br>
+							<div class="input-group">
+							<select class="form-control" id="choseGas2">
+								<option value="H2">Hydrogen</option>
+								<option value="N2">Nitrogen</option>
+								<option value="Air">Air</option>
+								<option value="O2">Oxigen</option>
+								<option value="CO2">Carbon Dioxide</option>
+							</select>
+							<button id="setGas2" class="btn btn-default btn-primary">Set Gas</button>
+							</div>	
+						</div>
+						</div>
+					</div>
+		
+					<!-- MFC 3 -->
+					<div>
+						<div class="card widget-large" style="text-align: center;">
+							<div class="card-header">
+							<h2 style="text-align: left;">MFC3</h2>
+							<span><h3 style="text-align: right;" id="mfcGasType_3">updating</h3></span>
+							</div>
+							<div class="card-body">				
+								<div class="chart-container" style="height: 250px; overflow:hidden;">
+									<div id="container-flowRateGauge_3"></div>
+								</div>				
+								<h3 id="mfcSetPoint_3">updating</h3>
+								<h5>Set Point</h5>
+							<div class="input-group">
+							<input id="changeFlow_3" class="form-control" type="number" onchange="changeFlowRate(1)" width="250px">
+							<div class="input-group-but">
+								<div class="btn-group">
+									<button id="setFlowRate_3" type="button" class="btn btn-primary">Set</button>
+									<button id="decreaceFlowRate_3" type="button" class="btn btn-primary">-</button>
+									<button id="increaseFlowRate_3" type="button" class="btn btn-primary">+</button>
+								</div>
+							</div>
+							</div>
+							<br>
+							<div class="input-group">
+							<select class="form-control" id="choseGas3">
+								<option value="H2">Hydrogen</option>
+								<option value="N2">Nitrogen</option>
+								<option value="Air">Air</option>
+								<option value="O2">Oxigen</option>
+								<option value="CO2">Carbon Dioxide</option>
+							</select>
+							<button id="setGas3" class="btn btn-default btn-primary">Set Gas</button>
+							</div>	
+						</div>
+						</div>
+					</div>
+		
+					<!-- MFM 4 -->
+					<div>
+						<div class="card widget-large" style="text-align: center;">
+							<div class="card-header">
+							<h2 style="text-align: left;">Outlet</h2>
+							<span><h3 style="text-align: right;" id="mfcGasType_4">updating</h3></span>
+							</div>
+							<div class="card-body">				
+								<div class="chart-container" style="height: 250px; overflow:hidden;">
+									<div id="container-flowRateGauge_4"></div>
+								</div>
+								<br>
+								<div class="input-group">
+								<select class="form-control" id="choseGas4">
+									<option value="H2">Hydrogen</option>
+									<option value="N2">Nitrogen</option>
+									<option value="Air">Air</option>
+									<option value="O2">Oxigen</option>
+									<option value="CO2">Carbon Dioxide</option>
+								</select>
+								<button id="setGas4" class="btn btn-default btn-primary">Set Gas</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!--Hot Wire Card-->
+					<div>
+						<div class="card widget-large" style="text-align: center;">
+							<div class="card-header">
+							<h2 style="text-align: left;">Hot Wire</h2>
+							<span><h3 style="text-align: right;"></h3></span>
+							</div>
+							<div class="card-body">				
+								<div class="chart-container" style="height: 250px; overflow:hidden;">
+									<div id="container-hotwire_data">
+										<h5>Hot Wire Current (mA)</h5>
+										<h3 id="hotWireCardCurrent"></h3>
+										<h5>Hot Wire Temperature (degC)</h5>
+										<h3 id="hotWireCardTemperature"></h3>
+										<h5>Hot Wire Voltage (V)</h5>
+										<h3 id="hotWireCardVoltage"></h3>
+									</div>
+								</div>
+								
+							</div>
+						</div>
+					</div>
+
+					<!--Multi MFC Set-->
+					<div>
+						<div class="card widget-large" style="text-align: center;">
+							<div class="card-header">
+							<h2 style="text-align: left;">Set Multiple MFCs</h2>
+							<span><h3 style="text-align: right;"></h3></span>
+							</div>
+							<div class="card-body">				
+								<div class="chart-container" style="height: 250px; overflow:hidden;">
+									<div class="input-group">
+										<input id="multiFlow_1" class="form-control" type="number" width="250px">
+										<input id="multiFlow_2" class="form-control" type="number" width="250px">
+										<input id="multiFlow_3" class="form-control" type="number" width="250px">
+										<button id="setMultiFlow" class="btn btn-default btn-primary">Update Flow</button>
+									</div>
+								</div>
+								
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<!-- How Wire Data -->
+			<div class="col-lg-2">
+				<div class="widget-initialisation">
+					<div class="col-lg-6">
+					<h3>Hot Wire Data</h3>
+					<!-- SMU Readings -->
+					<div>
+						<label for="measuredTemperature">Temperature</label>
+						<input id="measuredTemperature" type="text" class="form-control smu-measurement" disabled>
+					</div>
+					<br>
+					<div>
+						<label for="measuredCurrent">Current</label>
+						<input id="measuredCurrent" type="text" class="form-control smu-measurement" disabled>
+					</div>
+					<br>
+					<div>
+						<label for="measuredVoltage">Voltage</label>
+						<input id="measuredVoltage" type="text" class="form-control smu-measurement" disabled>
+					</div>
+					<br>
+					<div>
+						<label for="measuredResistance">Resistance</label>
+						<input id="measuredResistance" type="text" class="form-control smu-measurement" disabled>
+					</div>
+					<br>
+					</div>
+					<div class="col-lg-6">
+					<h3>Thermopiles</h3>
+					<div>
+						<label for="thermoUpStream">Upstream TP (V)</label>
+						<input id="thermoUpStream" type="text" class="form-control smu-measurement" disabled>
+					</div>
+					<br>
+					<div>
+						<label for="thermoDownStream">Downstream TP (V)</label>
+						<input id="thermoDownStream" type="text" class="form-control smu-measurement" disabled>
+					</div>
+					<br>
+					<button id="clearCharBTN" type="button" class="btn btn-default btn-primary">Clear Charts</button>
+				</div>
+				</div>
+			</div>
+
+			<!-- SMU Control -->
+			<div class="col-lg-8">
+				<div class="row">
+					<div class="widget-SMU col-lg-4">
+						<h2>SMU CONTROLS</h2>
+						<div class="custom-control custom-switch">
+							<input type="checkbox" class="custom-control-input" id="smuOutputON">
+							<label class="custom-control-label" for="smuOutputON">SMU ON when blue</label>
+						</div>
+						<div class="custom-control custom-switch">
+							<input type="checkbox" class="custom-control-input" id="smuOutputPulse">
+							<label class="custom-control-label" for="smuOutputPulse">SMU Pulsed when blue</label>
+						</div>
+						<form id="sourceSelector">
+							<div class="form-check-inline">
+								<label class="form-check-label">
+									  <input type="radio" class="form-check-input" name="optradio" id="currentSourceSelect" value="current">Current
+								</label>
+							</div>
+							<div class="form-check-inline">
+								<label class="form-check-label">
+									  <input type="radio" class="form-check-input" name="optradio" value="voltage">Voltage
+								</label>
+							</div>
+							<div class="form-check-inline">
+								<label class="form-check-label">
+									  <input type="radio" class="form-check-input" name="optradio" value="temperature">Temperature
+								</label>
+							</div>
+						</form>
+						<form id="senseMode">
+							<div class="form-check-inline">
+								<label class="form-check-label">
+									  <input type="radio" class="form-check-input" name="senseRadio" value="2wire">2 Wire
+								</label>
+							</div>
+							<div class="form-check-inline">
+								<label class="form-check-label">
+									  <input type="radio" class="form-check-input" name="senseRadio" value="4wire">4 Wire
+								</label>
+							</div>
+						</form>
+						<br>				
+						<!-- SMU Limits -->
+						<div>
+							<br>
+							<h4>Set Compliance:</h4>
+							<input id="complianceLimitValue" type="number" class="form-control">
+							<button id="updateCompliance" type="button" class="btn btn-default btn-primary">Set Compliance</button>
+							<br>
+							<br>
+						</div>
+					</div>
+						<!-- Tabs -->
+						<!-- <script>
+							$(' .nav-tabs a').on('click', function(e){
+								e.preventDefault();
+								$(this).tab('show');
+							});
+						</script> -->
+						
+					<div id="smuTabsDiv" class="col-lg-6">
+						<!-- Nav tabs -->
+						<ul class="nav nav-tabs">
+							<li class="active"><a class="nav-link" data-toggle="tab" href="#ccTab">Constant Current</a></li>
+							<li><a class="nav-link" href="#cvTab" data-toggle="tab">Constant Voltage</a></li>
+						</ul>  
+							<!-- Tab panes -->
+						<div class="tab-content">
+							<div class="tab-pane active" id="ccTab">
+									<h3>Constant Current/Voltage</h3>
+									<!-- Slider -->
+									<div>
+										<!-- <input id="ex7" type="text" data-slider-min="0" data-slider-max="0.05" data-slider-step="0.00001" data-slider-value="0.0" data-slider-enabled="false"/> -->
+										<input id="ex7" type="number" class="form-control smu-measurement">
+										<input id="ex7-enabled" type="checkbox"/> Enabled
+									</div>
+									<div>
+										<input id="smuPeriod" type="number" class="form-control smu-measurement" value="1">
+										<label>Period (seconds)</label>
+									</div>
+									<div>
+										<input id="smuDutyRatio" type="number" class="form-control smu-measurement" value="0.5">
+										<label>Duty Ratio (percent)</label>
+									</div>
+							</div>
+
+							<div class="tab-pane" id="cvTab">
+								<h3>Constant Current/Voltage</h3>
+								<!-- Slider -->
+								<div>
+									<input id="ex8" type="text" data-slider-min="0" data-slider-max="2" data-slider-step="0.1" data-slider-value="0.0" data-slider-enabled="false"/>
+									<input id="ex8-enabled" type="checkbox"/> Enabled
+								</div>
+						</div>
+<!-- 							<div class="tab-pane" id="ctTab">
+								<h3>Set Constant Temperature Mode</h3>
+								<br>
+								<div class="custom-control custom-switch">
+									<input type="checkbox" class="custom-control-input" id="pidControlOn">
+									<label class="custom-control-label" for="pidControlOn">PID active when blue</label>
+								</div>
+								<h3>Set Temperature</h3>
+								<input id="temperatureSlider" type="text" data-slider-min="0" data-slider-max="250" data-slider-step="1" data-slider-value="30" data-slider-enabled="false"/>
+								<input id="temperatureSlider-enabled" type="checkbox"/> Enabled
+								<input id="temperatureInputBox" type="number" class="form-control smu-measurement">
+								<br>
+								<br>
+								<h4>Set Limits</h4>
+								<label for="minPIDOutput">Minimum Output</label>
+								<input id="minPIDOutput" type="number" class="form-control smu-measurement" >   
+								<label for="maxPIDOutput">Maximum Output</label>
+								<input id="maxPIDOutput" type="number" class="form-control smu-measurement">
+								<button id="setPIDOutputLimits" type="button" class="btn btn-default btn-primary">Set Limits</button> 
+								<br>
+								<br>
+								<h3>PID Parameters</h3>
+								<h4>Proportional</h4>
+								<input id="pTermSlider" type="text" data-slider-min="0" data-slider-max="10" data-slider-step="0.01" data-slider-value="5" data-slider-enabled="false"/>
+								<input id="pTermSlider-enabled" type="checkbox"/> Enabled
+								<input id="pTermInputBox" type="number" class="form-control smu-measurement">
+								<h4>Integral</h4>
+								<input id="iTermSlider" type="text" data-slider-min="0" data-slider-max="2" data-slider-step="0.1" data-slider-value="1" data-slider-enabled="false"/>
+								<input id="iTermSlider-enabled" type="checkbox"/> Enabled
+								<input id="iTermInputBox" type="number" class="form-control smu-measurement">
+								<h4>Differential</h4>
+								<input id="dTermSlider" type="text" data-slider-min="0" data-slider-max="2" data-slider-step="0.1" data-slider-value="1" data-slider-enabled="false"/>
+								<input id="dTermSlider-enabled" type="checkbox"/> Enabled
+								<input id="dTermInputBox" type="number" class="form-control smu-measurement">					
+							</div> -->
+							</div>
+					</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	
+		<div class="row">
+			<div class="col-lg-12">
+				<!-- <div class="chart-container" style="overflow:hidden;"> -->
+					<div class="col-lg-3">
+					<div id="container-outputs1"></div>
+					</div>
+					<div class="col-lg-3">
+					<div id="container-outputs2"></div>
+					</div>
+					<div class="col-lg-3">
+					<div id="container-outputs3"></div>
+					</div>
+					<div class="col-lg-3">
+					<div id="container-outputs4"></div>
+					</div>
+					<div class="col-lg-3">
+					<div id="container-outputs5"></div>
+					</div>
+					<div class="col-lg-3">
+					<div id="container-outputs6"></div>
+					</div>
+				<!-- </div>	 -->
+			</div>
+	</div>
+</body>
+</html>

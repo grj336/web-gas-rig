@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="static/styles/myStyle.css">
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+	<script src="https://code.highcharts.com/highcharts-more.js"></script>
+	<script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
+	<script src="https://code.highcharts.com/modules/exporting.js"></script>
+	<script src="https://code.highcharts.com/modules/export-data.js"></script>
+	<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+	<!-- <script type="text/javascript" src="static/js/testScripts.js?ver<%=DateTime.Now.Ticks.ToString()%>"></script> -->
+	<!-- <script type="text/javascript" src="static/js/chartScripts.js"></script>	 -->
+	<script type="text/javascript" src="static/js/smuScripts.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.2/bootstrap-slider.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.2/css/bootstrap-slider.min.css">
+</head>
+<body>
+	<div class="container">
+		<!-- SMU CONTROLS -->
+		<div class="row">
+			<div class="widget-SMU col-lg-4">
+				<h2>SMU CONTROLS</h2>
+				<div class="custom-control custom-switch">
+					<input type="checkbox" class="custom-control-input" id="smuOutputON">
+					<label class="custom-control-label" for="smuOutputON">SMU ON when blue</label>
+				</div>
+				<form id="sourceSelector">
+					<div class="form-check-inline">
+						<label class="form-check-label">
+					  		<input type="radio" class="form-check-input" name="optradio" id="currentSourceSelect" value="current">Current
+						</label>
+					</div>
+					<div class="form-check-inline">
+						<label class="form-check-label">
+					  		<input type="radio" class="form-check-input" name="optradio" value="voltage">Voltage
+						</label>
+                    </div>
+                    <div class="form-check-inline">
+                        <label class="form-check-label">
+                              <input type="radio" class="form-check-input" name="optradio" value="temperature">Temperature
+                        </label>
+                    </div>
+				</form>
+				<form id="senseMode">
+					<div class="form-check-inline">
+						<label class="form-check-label">
+					  		<input type="radio" class="form-check-input" name="senseRadio" value="2wire">2 Wire
+						</label>
+					</div>
+					<div class="form-check-inline">
+						<label class="form-check-label">
+					  		<input type="radio" class="form-check-input" name="senseRadio" value="4wire">4 Wire
+						</label>
+					</div>
+				</form>
+                <br>				
+                <!-- SMU Limits -->
+				<div>
+					<br>
+					<h4>Set Compliance:</h4>
+					<input id="complianceLimitValue" type="number" class="form-control">
+                    <button id="updateCompliance" type="button" class="btn btn-default btn-primary">Set Compliance</button>
+                    <br>
+                    <br>
+				</div>
+			</div>
+				<!-- Tabs -->
+                <!-- <script>
+                    $(' .nav-tabs a').on('click', function(e){
+                        e.preventDefault();
+                        $(this).tab('show');
+                    });
+				</script> -->
+				
+            <div id="smuTabsDiv" class="col-lg-6">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs">
+                    <li class="active"><a class="nav-link" data-toggle="tab" href="#ccTab">Constant Current</a></li>
+                    <li><a class="nav-link" href="#ctTab" data-toggle="tab">Constant Temperature</a></li>
+                </ul>  
+                    <!-- Tab panes -->
+                <div class="tab-content">
+                    <div class="tab-pane active" id="ccTab">
+                            <h3>Constant Current/Voltage</h3>
+                            <!-- Slider -->
+				            <div>
+					            <input id="ex7" type="text" data-slider-min="0" data-slider-max="0.1" data-slider-step="0.001" data-slider-value="0.05" data-slider-enabled="false"/>
+					            <input id="ex7-enabled" type="checkbox"/> Enabled
+				            </div>
+                    </div>
+                    <div class="tab-pane" id="ctTab">
+						<h3>Set Constant Temperature Mode</h3>
+						<br>
+						<div class="custom-control custom-switch">
+							<input type="checkbox" class="custom-control-input" id="pidControlOn">
+							<label class="custom-control-label" for="pidControlOn">PID active when blue</label>
+						</div>
+						<h3>Set Temperature</h3>
+						<input id="temperatureSlider" type="text" data-slider-min="0" data-slider-max="250" data-slider-step="1" data-slider-value="30" data-slider-enabled="false"/>
+						<input id="temperatureSlider-enabled" type="checkbox"/> Enabled
+						<input id="temperatureInputBox" type="number" class="form-control smu-measurement">
+						<br>
+						<br>
+						<h4>Set Limits</h4>
+						<label for="minPIDOutput">Minimum Output</label>
+						<input id="minPIDOutput" type="number" class="form-control smu-measurement" >   
+						<label for="maxPIDOutput">Maximum Output</label>
+						<input id="maxPIDOutput" type="number" class="form-control smu-measurement">
+						<button id="setPIDOutputLimits" type="button" class="btn btn-default btn-primary">Set Limits</button> 
+						<br>
+						<br>
+						<h3>PID Parameters</h3>
+						<h4>Proportional</h4>
+						<input id="pTermSlider" type="text" data-slider-min="0" data-slider-max="10" data-slider-step="0.01" data-slider-value="5" data-slider-enabled="false"/>
+						<input id="pTermSlider-enabled" type="checkbox"/> Enabled
+						<input id="pTermInputBox" type="number" class="form-control smu-measurement">
+						<h4>Integral</h4>
+						<input id="iTermSlider" type="text" data-slider-min="0" data-slider-max="2" data-slider-step="0.1" data-slider-value="1" data-slider-enabled="false"/>
+						<input id="iTermSlider-enabled" type="checkbox"/> Enabled
+						<input id="iTermInputBox" type="number" class="form-control smu-measurement">
+						<h4>Differential</h4>
+						<input id="dTermSlider" type="text" data-slider-min="0" data-slider-max="2" data-slider-step="0.1" data-slider-value="1" data-slider-enabled="false"/>
+						<input id="dTermSlider-enabled" type="checkbox"/> Enabled
+						<input id="dTermInputBox" type="number" class="form-control smu-measurement">					
+                    </div>
+                    </div>
+            </div>
+			</div>
+		</div>
+	</div>
+
+
+</body>
+</html>
+
+
+                            <!-- <br>
+                            <div>
+                                <label for="targetTemp">Target Temperature</label>
+                                <button id="setTargetTemperature" type="button" class="btn btn-default btn-primary">Set</button>
+                            </div>
+                            <div>
+                                <h3>PID Parameters</h3>
+							    <h4>Proportional</h4>
+							    <input id="pTermSlider" type="text" data-slider-min="0" data-slider-max="10" data-slider-step="0.01" data-slider-value="5" data-slider-enabled="false"/>
+							    <input id="pTermSlider-enabled" type="checkbox"/> Enabled
+							    <h4>Integral</h4>
+							    <input id="iTermSlider" type="text" data-slider-min="0" data-slider-max="2" data-slider-step="0.1" data-slider-value="1" data-slider-enabled="false"/>
+							    <input id="iTermSlider-enabled" type="checkbox"/> Enabled
+							    <h4>Differential</h4>
+							    <input id="dTermSlider" type="text" data-slider-min="0" data-slider-max="2" data-slider-step="0.1" data-slider-value="1" data-slider-enabled="false"/>
+                                <input id="dTermSlider-enabled" type="checkbox"/> Enabled	
+                                <h3>Set Limits</h3>
+                                <label for="minPIDOutput">Minimum Output</label>
+                                <input id="minPIDOutput" type="number" class="form-control smu-measurement" >   
+                                <label for="maxPIDOutput">Maximum Output</label>
+                                <input id="maxPIDOutput" type="number" class="form-control smu-measurement">
+                                <button id="setPIDOutputLimits" type="button" class="btn btn-default btn-primary">Set Limits</button>                             
+                            </div> -->

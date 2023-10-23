@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+		<link rel="stylesheet" href="static/styles/myStyle.css">
+		<script src="https://code.highcharts.com/highcharts.js"></script>
+		<script src="https://code.highcharts.com/highcharts-more.js"></script>
+		<script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
+		<script src="https://code.highcharts.com/modules/exporting.js"></script>
+		<script src="https://code.highcharts.com/modules/export-data.js"></script>
+		<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+		<!-- <script type="text/javascript" src="static/js/testScripts.js?ver<%=DateTime.Now.Ticks.ToString()%>"></script> -->
+		<!-- <script type="text/javascript" src="static/js/chartScripts.js"></script>	 -->
+		<script type="text/javascript" src="static/js/smuScripts.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.2/bootstrap-slider.min.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.2/css/bootstrap-slider.min.css">
+	</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<h3>Set Constant Temperature Mode</h3>
+			<br>
+			<div>
+				<label for="targetTemp">Target Temperature</label>
+				<input id="targetTemp" type="number" class="form-control smu-measurement">
+			</div>
+		<!-- End Row-->
+		</div>
+		<div class="row">
+			<div class="col-lg-12">
+				<h3>PID Parameters</h3>
+					<h4>Proportional</h4>
+					<input id="pTermSlider" type="text" data-slider-min="0" data-slider-max="10" data-slider-step="0.01" data-slider-value="5" data-slider-enabled="false"/>
+					<input id="pTermSlider-enabled" type="checkbox"/> Enabled
+					<h4>Integral</h4>
+					<input id="iTermSlider" type="text" data-slider-min="0" data-slider-max="2" data-slider-step="0.1" data-slider-value="1" data-slider-enabled="false"/>
+					<input id="iTermSlider-enabled" type="checkbox"/> Enabled
+					<h4>Differential</h4>
+					<input id="dTermSlider" type="text" data-slider-min="0" data-slider-max="2" data-slider-step="0.1" data-slider-value="1" data-slider-enabled="false"/>
+					<input id="dTermSlider-enabled" type="checkbox"/> Enabled					
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-9">
+				<h3>Set Limits</h3>
+				<div class="col-lg-3">
+					<label for="minPIDOutput">Minimum Output</label>
+					<input id="minPIDOutput" type="number" class="form-control smu-measurement" >
+				</div>
+				<div class="col-lg-3">
+					<label for="maxPIDOutput">Maximum Output</label>
+					<input id="maxPIDOutput" type="number" class="form-control smu-measurement">
+				</div>
+				<button id="setPIDOutputLimits" type="button" class="btn btn-default btn-primary">Set Limits</button>
+			</div>
+		</div>
+	</div>
+
+
+</body>
+</html>
